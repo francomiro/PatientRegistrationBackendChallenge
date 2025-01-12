@@ -3,6 +3,7 @@ package light.it.Patient_Registration_Backend_Challenge.dto;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
+import light.it.Patient_Registration_Backend_Challenge.util.NotEmptyFile;
 import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -19,5 +20,6 @@ public class PatientDTO {
     @Pattern(regexp = "^\\+?[0-9]{10,15}$", message = "Invalid phone number format")
     private String phone;
 
+    @NotEmptyFile(message = "Document is required")
     private MultipartFile documentPhoto;
 }
