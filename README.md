@@ -1,60 +1,59 @@
 # Patient Registration Backend Challenge
 
-## Descripción
+## Description
 
-Esta es una API creada para el challenge de Light-it, se encarga de la gestion de registro de pacientes. Permite registrar pacientes, almacenar sus datos y documentos, y enviar notificaciones por correo electrónico. 
-La aplicación está desarrollada con **JAVA**  **Spring Boot** y utiliza **MySQL** como base de datos. 
+This is an API created for the Light-it challenge. It handles patient registration management, allowing users to register patients, store their data and documents, and send email notifications.  
+The application is developed using **JAVA**, **Spring Boot**, and utilizes **MySQL** as the database.
 
-## Requisitos
+## Requirements
 
-### Software Necesario
+### Required Software
 
-- **Docker**: Para crear y ejecutar los contenedores necesarios.
-  
-#### En caso de querer correr la API localmente y sin docker:
+- **Docker**: To create and run the necessary containers.
+
+#### If you want to run the API locally without Docker:
 - **Java 17**
 - **Maven**
 - **MySQL**
 
-### Dependencias
+### Dependencies
 
 - **Spring Boot**
 - **Hibernate**
 - **Spring Data JPA**
 - **Spring Mail**
 
-## Instrucciones para el Despliegue con Docker
+## Deployment Instructions with Docker
 
-### 1. Clonar el repositorio
+### 1. Clone the Repository
 
-### 2. Editar configuracion a gusto
-Antes de levantar los contenedores hay que configurar en el fichero **docker-compose.yml** la url y credenciales de Mailtrap para recibir los correos en su propia cuenta, en caso que no tengan, pueden dejar los valores que trae definidos que son los relacionados a mi cuenta 
-              
-      SPRING_MAIL_HOST
-      SPRING_MAIL_PORT
-      SPRING_MAIL_USERNAME
-      SPRING_MAIL_PASSWORD
-      
-### 3. Iniciar los contenedores con Docker Compose
+### 2. Edit Configuration (Optional)
+Before starting the containers, configure the **docker-compose.yml** file with your Mailtrap credentials to receive emails in your own account. If you don’t have an account, you can keep the default values, which correspond to my account:
 
+    SPRING_MAIL_HOST
+    SPRING_MAIL_PORT
+    SPRING_MAIL_USERNAME
+    SPRING_MAIL_PASSWORD
 
-Levantar los contenedores (la base de datos y la API) ejecutando el siguiente comando:
+### 3. Start the Containers with Docker Compose
+
+Start the containers (both the database and the API) by running the following command:
 
     docker-compose up --build
 
-La API quedara levantada en la siguiente URL: 
+The API will be accessible at the following URL:
 
     http://localhost:8080
 
-### 3. Prueba de la API
-**Registrar un paciente**
+### 4. Test the API
+**Register a Patient**
 
-- URL: /patients/
-- Método: POST
-- Descripción: Registra un nuevo paciente en el sistema.
-- Body (JSON)
+- **URL**: /patients/
+- **Method**: POST
+- **Description**: Registers a new patient in the system.
+- **Body (JSON)**
 
-Para probarla el mejor metodo es a traves de Postman, aqui dejo el cURL para importar el request: 
+To test the API, the recommended method is through Postman. Below is a cURL command you can import as a request:
 
     curl --location 'http://localhost:8080/patients/' \
     --form 'name="Juan Perez"' \
@@ -62,48 +61,44 @@ Para probarla el mejor metodo es a traves de Postman, aqui dejo el cURL para imp
     --form 'phone="1164319791"' \
     --form 'documentPhoto=@"/path/to/file"'
 
-Una vez importado el request quedara pendiente agregar un fichero en el campo documentPhoto (no tiene que superar los 10mb). 
+Once imported into Postman, you will need to attach a file in the `documentPhoto` field (must not exceed 10 MB).
 
-**Respuestas posibles**
-- 200 OK: Si el paciente se registró correctamente.
-- 400 Bad Request: Si falta algún dato obligatorio o no cumple el formato adecuado.
+**Possible Responses**
+- **200 OK**: If the patient was registered successfully.
+- **400 Bad Request**: If any required field is missing or does not meet the required format.
 
-### 4. Visualizacion en Base de datos
-Para ver la informacion en la base de datos de los pacientes que se van agregando puedes verlo a traves de Docker o configurandolo en algun tipo de gestor de base de datos como DBeaver: 
-- **Host:** localhost 
-- **Port:** 3306 (el puerto mapeado en Docker Compose).
-- **Database:** challenge_db (nombre de la base de datos).
-- **Username:** root.
+### 5. View the Database
+To view patient data stored in the database, you can either use Docker or configure a database client like DBeaver:  
+- **Host:** localhost  
+- **Port:** 3306 (mapped in Docker Compose).  
+- **Database:** challenge_db (name of the database).  
+- **Username:** root.  
 - **Password:** admin.
   
 ![image](https://github.com/user-attachments/assets/e2447251-ebc5-4acf-8e7b-90265ba9fda0)
 
-**Acceder desde docker:**
-Ejecutar este comando en una consola nueva: 
+**Access from Docker:**
+Run the following command in a new terminal:
 
     docker exec -it mysql mysql -u root -padmin
 
-A partir de este momento podras ingresar comandos SQL para visualizar las tablas. 
+Once logged in, you can run SQL commands to view the tables. 
 
-Por ejemplo aqui algunos script utiles:
+Here are some useful commands:
 
     SHOW DATABASES;
 
-    
     USE challenge_db;
 
-    
     SHOW TABLES;
 
-    
     SELECT * FROM patient;
 
-Y si quieres visualizar los documentos adjuntados: 
+To view the attached documents:
 
     SELECT * FROM patient_document;
 
-### 5. Apagar contenedor
-Para apagar el contenedor una vez finalizadas las pruebas: 
+### 6. Stop Containers
+To stop the containers after testing:
 
-    Docker compose down
-  
+    docker-compose down
