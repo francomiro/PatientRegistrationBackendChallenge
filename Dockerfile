@@ -16,4 +16,3 @@ COPY wait-for-it.sh /app/wait-for-it.sh
 EXPOSE 8080
 
 ENTRYPOINT ["/app/wait-for-it.sh", "db:3306", "--", "java", "-jar", "/app/app.jar"]
-
