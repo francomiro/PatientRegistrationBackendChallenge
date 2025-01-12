@@ -10,7 +10,7 @@ ENV SPRING_MAIL_PASSWORD 6caf19d626fcff
 
 WORKDIR /app
 
-COPY target/Patient-Registration-Backend-Challenge-0.0.1-SNAPSHOT.jar /app/app.jar
+COPY apicompilada/Patient-Registration-Backend-Challenge-0.0.1-SNAPSHOT.jar /app/app.jar
 COPY wait-for-it.sh /app/wait-for-it.sh
 
 EXPOSE 8080
