@@ -33,6 +33,7 @@ public class PatientService {
 
     @Transactional
     public void registerPatient(PatientDTO patientDto) throws IOException {
+        System.out.println("Creating new Patient.");
         // Convert file to bytes
         MultipartFile document = patientDto.getDocumentPhoto();
         byte[] content = document.getBytes();

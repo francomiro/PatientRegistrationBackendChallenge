@@ -17,6 +17,7 @@ public class EmailService implements NotificationService {
     public void sendNewPatientNotification(Patient patient) {
         CompletableFuture.runAsync(() -> {
             try {
+                System.out.println("Sending email");
                 var message = mailSender.createMimeMessage();
                 var helper = new MimeMessageHelper(message, true);
                 helper.setTo(patient.getEmail());
