@@ -57,9 +57,9 @@ La API quedara levantada en la siguiente URL:
 Para probarla el mejor metodo es a traves de Postman, aqui dejo el cURL para importar el request: 
 
     curl --location 'http://localhost:8080/patients/' \
-    --form 'name="Franco Miro"' \
-    --form 'email="franco.miro99@gmail.com"' \
-    --form 'phone="1164519791"' \
+    --form 'name="Juan Perez"' \
+    --form 'email="Juanperez@gmail.com"' \
+    --form 'phone="1164319791"' \
     --form 'documentPhoto=@"/path/to/file"'
 
 Una vez importado el request quedara pendiente agregar un fichero en el campo documentPhoto (no tiene que superar los 10mb). 
@@ -68,6 +68,42 @@ Una vez importado el request quedara pendiente agregar un fichero en el campo do
 - 200 OK: Si el paciente se registró correctamente.
 - 400 Bad Request: Si falta algún dato obligatorio o no cumple el formato adecuado.
 
+### 4. Visualizacion en Base de datos
+Para ver la informacion en la base de datos de los pacientes que se van agregando puedes verlo a traves de Docker o configurandolo en algun tipo de gestor de base de datos como DBeaver: 
+- **Host:** localhost 
+- **Port:** 3306 (el puerto mapeado en Docker Compose).
+- **Database:** challenge_db (nombre de la base de datos).
+- **Username:** root.
+- **Password:** admin.
+  
+![image](https://github.com/user-attachments/assets/e2447251-ebc5-4acf-8e7b-90265ba9fda0)
 
+**Acceder desde docker:**
+Ejecutar este comando en una consola nueva: 
 
+    docker exec -it mysql mysql -u root -padmin
+
+A partir de este momento podras ingresar comandos SQL para visualizar las tablas. 
+
+Por ejemplo aqui algunos script utiles:
+
+    SHOW DATABASES;
+
+    
+    USE challenge_db;
+
+    
+    SHOW TABLES;
+
+    
+    SELECT * FROM patient;
+
+Y si quieres visualizar los documentos adjuntados: 
+
+    SELECT * FROM patient_document;
+
+### 5. Apagar contenedor
+Para apagar el contenedor una vez finalizadas las pruebas: 
+
+    Docker compose down
   
