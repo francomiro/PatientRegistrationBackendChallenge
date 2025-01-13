@@ -102,3 +102,12 @@ To view the attached documents:
 To stop the containers after testing:
 
     docker-compose down
+
+### 5. TESTS
+The project includes unit and integration tests to ensure the correct functioning of the system features.
+To run the application's tests, you need to have the local environment configured. In the application.properties, you should enter your local database details.
+
+Here are some results from the unit and integration tests:
+![image](https://github.com/user-attachments/assets/216cacae-c2dd-4d90-94a1-a1bf3571f0df)
+
+
