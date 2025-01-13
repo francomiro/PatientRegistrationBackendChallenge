@@ -16,18 +16,18 @@ import java.util.List;
 @Service
 public class PatientService {
 
-    @Autowired
     private PatientRepository patientRepository;
 
-    @Autowired
     private PatientDocumentRepository patientDocumentRepository;
 
-    @Autowired
     private EmailService emailService;
 
     private final List<NotificationService> notificationServices;
 
-    public PatientService(List<NotificationService> notificationServices) {
+    public PatientService(PatientRepository patientRepository, PatientDocumentRepository patientDocumentRepository, EmailService emailService,List<NotificationService> notificationServices) {
+        this.patientRepository = patientRepository;
+        this.patientDocumentRepository = patientDocumentRepository;
+        this.emailService = emailService;
         this.notificationServices = notificationServices;
     }
 
