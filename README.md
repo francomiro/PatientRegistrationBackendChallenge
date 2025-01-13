@@ -64,7 +64,7 @@ To test the API, the recommended method is through Postman. Below is a cURL comm
 Once imported into Postman, you will need to attach a file in the `documentPhoto` field (must not exceed 10 MB).
 
 **Possible Responses**
-- **200 OK**: If the patient was registered successfully.
+- **201 CREATED**: If the patient was registered successfully.
 - **400 Bad Request**: If any required field is missing or does not meet the required format.
 
 ### 5. View the Database
